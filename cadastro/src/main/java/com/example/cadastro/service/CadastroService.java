@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CadastroService {
@@ -23,8 +24,12 @@ public class CadastroService {
     }
 
     public Cadastro findById(Integer id) {
-        return cadastroRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cadastro não encontrado!"));
+        Optional<Cadastro> cadastro = Optional.ofNullable(cadastroRepository.findById(id));
+        if(cadastro.isEmpty()) {
+            return cadastro.get();
+        }else{
+            return null;
+        }
     }
 
     public Cadastro update(Integer id, Cadastro cadastro) {
