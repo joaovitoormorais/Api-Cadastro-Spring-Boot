@@ -7,6 +7,7 @@ import java.util.List;
 
 @Repository
 public interface CadastroRepository {
+
     Cadastro save(Cadastro cadastro);
 
     List<Cadastro> findALl();
